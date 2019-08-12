@@ -1,0 +1,53 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.palette {
+  display: flex;
+}
+
+.brush {
+  display: flex;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.current-brush, .palette-color {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: 50px 50px 50px;
+  grid-template-columns: 50px 50px 50px;
+  border: 1px solid black;
+}
+
+.blue {
+  background-color: lightblue;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: lightgreen;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.white {
+  background-color: white;
+}
