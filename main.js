@@ -17,7 +17,7 @@ paletteColors.forEach((paletteColor) => paletteColor.onclick = handleClickPalett
 const squares = Array.from(document.querySelectorAll('.square'));
 
 
-const isPartOfAUniqueLine = (column, row) => {
+const isPartOfAUniqueLine = (column, i) => {
   const colors = squares.map((square) => getColor(square));
   const columnColors = new Set();
   const rowColors = new Set();
@@ -25,38 +25,27 @@ const isPartOfAUniqueLine = (column, row) => {
   switch (column) {
     case 0:
       columnColors.add(colors[0]).add(colors[3]).add(colors[6]);
+      rowColors.add(colors[i]).add(colors[i + 1]).add(colors[i + 2]);
       break;
       
-    case 1:
-      columnColors.add(colors[1]).add(colors[4]).add(colors[7]);
+      case 1:
+        columnColors.add(colors[1]).add(colors[4]).add(colors[7]);
+        rowColors.add(colors[i - 1]).add(colors[i]).add(colors[i + 1]);
       break;
-
+      
     case 2:
       columnColors.add(colors[2]).add(colors[5]).add(colors[8]);
+      rowColors.add(colors[i - 2]).add(colors[i - 1]).add(colors[i]);
       break;
   }
-    
-    switch (row) {
-      case 0:
-        rowColors.add(colors[0]).add(colors[1]).add(colors[2]);
-        break;
-        
-      case 1:
-        rowColors.add(colors[3]).add(colors[4]).add(colors[5]);
-        break;
+
+  const isARow = rowColors.size === 3;
+  const noEmptyInRow = !rowColors.has('color-5');
   
-      case 2:
-        rowColors.add(colors[6]).add(colors[7]).add(colors[8]);
-        break;
-    }
+  const isAColumn = columnColors.size === 3;
+  const noEmptyInColumn = !columnColors.has('color-5');
 
-    const isARow = rowColors.size === 3;
-    const noWhiteInRow = !rowColors.has('white');
-    
-    const isAColumn = columnColors.size === 3;
-    const noWhiteInColumn = !columnColors.has('white');
-
-    return isARow && noWhiteInRow || isAColumn && noWhiteInColumn;
+  return isARow && noEmptyInRow || isAColumn && noEmptyInColumn;
 }
 
 
@@ -64,11 +53,10 @@ const handleClickSquare = (event) => {
   const square = event.target;
   square.classList.replace(getColor(square), getColor(brush));
 
-  const index = squares.indexOf(square);
-  const column = index % 3;
-  const row = Math.floor(index / 3);
+  const i = squares.indexOf(square);
+  const column = i % 3;
 
-  if (isPartOfAUniqueLine(column, row)) {
+  if (isPartOfAUniqueLine(column, i)) {
     document.querySelector('.message')
       .innerText = 'Hey, you put three unique colors in a line. Cool!';
   }
