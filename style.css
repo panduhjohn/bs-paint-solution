@@ -8,6 +8,7 @@
 
 .palette {
   display: flex;
+  margin-left: -30px;
 }
 
 .brush {
