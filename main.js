@@ -1,71 +1,76 @@
 const brush = document.querySelector('.current-brush');
 brush.classList.add('blue');
 
+
+const getColor = (element) => element.classList.item(1);
+
+
 const handleClickPaletteColor = (event) => brush.classList.replace(
-  brush.classList.item(1),
-  event.target.classList.item(1),
+  getColor(brush),
+  getColor(event.target),
 );
+
 
 const paletteColors = Array.from(document.querySelectorAll('.palette-color'));
 paletteColors.forEach((paletteColor) => paletteColor.onclick = handleClickPaletteColor);
 
 const squares = Array.from(document.querySelectorAll('.square'));
 
+
 const isPartOfAUniqueLine = (column, row) => {
-  const colors = squares.map((square) => square.classList.item(1));
-  const columnColors = [];
-  const rowColors = [];
+  const colors = squares.map((square) => getColor(square));
+  const columnColors = new Set();
+  const rowColors = new Set();
 
   switch (column) {
     case 0:
-      columnColors.push(colors[0], colors[3], colors[6],);
+      columnColors.add(colors[0]).add(colors[3]).add(colors[6]);
       break;
       
     case 1:
-      columnColors.push(colors[1], colors[4], colors[7],);
+      columnColors.add(colors[1]).add(colors[4]).add(colors[7]);
       break;
 
     case 2:
-      columnColors.push(colors[2], colors[5], colors[8],);
+      columnColors.add(colors[2]).add(colors[5]).add(colors[8]);
       break;
   }
     
     switch (row) {
       case 0:
-        rowColors.push(colors[0], colors[1], colors[2],);
+        rowColors.add(colors[0]).add(colors[1]).add(colors[2]);
         break;
         
       case 1:
-        rowColors.push(colors[3], colors[4], colors[5],);
+        rowColors.add(colors[3]).add(colors[4]).add(colors[5]);
         break;
   
       case 2:
-        rowColors.push(colors[6], colors[7], colors[8],);
+        rowColors.add(colors[6]).add(colors[7]).add(colors[8]);
         break;
     }
 
-    const isARow = (new Set(rowColors).size) === 3;
-    const noWhiteInRow = !(rowColors.includes('white'));
+    const isARow = rowColors.size === 3;
+    const noWhiteInRow = !rowColors.has('white');
     
-    const isAColumn = (new Set(columnColors)).size === 3;
-    const noWhiteInColumn = !(columnColors.includes('white'));
+    const isAColumn = columnColors.size === 3;
+    const noWhiteInColumn = !columnColors.has('white');
 
     return isARow && noWhiteInRow || isAColumn && noWhiteInColumn;
 }
 
+
 const handleClickSquare = (event) => {
   const square = event.target;
-  square.classList.replace(
-    square.classList.item(1),
-    brush.classList.item(1),
-  );
+  square.classList.replace(getColor(square), getColor(brush));
 
   const index = squares.indexOf(square);
   const column = index % 3;
   const row = Math.floor(index / 3);
 
   if (isPartOfAUniqueLine(column, row)) {
-    document.querySelector('.message').innerText = 'You put three unique colors in a line!';
+    document.querySelector('.message')
+      .innerText = 'Hey, you put three unique colors in a line. Cool!';
   }
 }
 
