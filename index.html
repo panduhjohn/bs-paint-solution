@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Painterly</title>
+    <title>BS Paint</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <section class="app">
-      <h3>Painterly</h3>
-      <section class="palette">
-        <img class="icon palette-icon" src="palette.png">
-        <div class="palette-color blue"></div>
-        <div class="palette-color yellow"></div>
-        <div class="palette-color green"></div>
-        <div class="palette-color red"></div>
-        <div class="palette-color white"></div>
+      <section class="headings">
+        <h3>BS Paint</h3>
+        <p class="message">Paint away!</p>
       </section>
-      <section class="brush">
-        <div class="current-brush">
-          <img class="icon brush-icon" src="paintbrush.png">
-        </div>
-      </section>
-      <section class="grid">
-        <div class="square white"></div>
-        <div class="square white"></div>
-        <div class="square white"></div>
-        <div class="square white"></div>
-        <div class="square white"></div>
-        <div class="square white"></div>
-        <div class="square white"></div>
-        <div class="square white"></div>
-        <div class="square white"></div>
+      <section class="paint">
+        <section class="brush-selection">
+          <section class="palette">
+            <img class="icon palette-icon" src="palette.png">
+            <div class="palette-color blue"></div>
+            <div class="palette-color yellow"></div>
+            <div class="palette-color green"></div>
+            <div class="palette-color red"></div>
+            <div class="palette-color white"></div>
+          </section>
+          <section class="brush">
+            <div class="current-brush">
+              <img class="icon brush-icon" src="paintbrush.png">
+            </div>
+          </section>
+        </section>
+        <section class="canvas">
+          <div class="square white"></div>
+          <div class="square white"></div>
+          <div class="square white"></div>
+          <div class="square white"></div>
+          <div class="square white"></div>
+          <div class="square white"></div>
+          <div class="square white"></div>
+          <div class="square white"></div>
+          <div class="square white"></div>
+        </section>
       </section>
     </section>
     <script src="./main.js"></script>

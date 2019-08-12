@@ -65,18 +65,8 @@ const handleClickSquare = (event) => {
   const row = Math.floor(index / 3);
 
   if (isPartOfAUniqueLine(column, row)) {
-    document.querySelector('h3').innerText = 'You put three unique colors in a line!';
+    document.querySelector('.message').innerText = 'You put three unique colors in a line!';
   }
 }
 
 squares.forEach((square) => square.onclick = handleClickSquare);
-
-const handleClickBrush = () => {
-  brushColor = brushColor.next;
-  brush.classList.replace(
-    brush.classList.item(1),
-    brushColor.colorName,
-  )
-}
-
-brush.onclick = handleClickBrush;
