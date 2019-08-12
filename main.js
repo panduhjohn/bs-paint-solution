@@ -1,5 +1,6 @@
 const brush = document.querySelector('.current-brush');
-// brush.classList.add('blue');
+const paletteColors = Array.from(document.querySelectorAll('.palette-color'));
+const squares = Array.from(document.querySelectorAll('.square'));
 
 
 const getColor = (element) => element.classList.item(1);
@@ -8,13 +9,11 @@ const getColor = (element) => element.classList.item(1);
 const handleClickPaletteColor = (event) => brush.classList.replace(
   getColor(brush),
   getColor(event.target),
-);
-
-
-const paletteColors = Array.from(document.querySelectorAll('.palette-color'));
-paletteColors.forEach((paletteColor) => paletteColor.onclick = handleClickPaletteColor);
-
-const squares = Array.from(document.querySelectorAll('.square'));
+  );
+  
+paletteColors.forEach((paletteColor) => {
+  paletteColor.onclick = handleClickPaletteColor
+});
 
 
 const isPartOfAUniqueLine = (column, i) => {
@@ -28,9 +27,9 @@ const isPartOfAUniqueLine = (column, i) => {
       rowColors.add(colors[i]).add(colors[i + 1]).add(colors[i + 2]);
       break;
       
-      case 1:
-        columnColors.add(colors[1]).add(colors[4]).add(colors[7]);
-        rowColors.add(colors[i - 1]).add(colors[i]).add(colors[i + 1]);
+    case 1:
+      columnColors.add(colors[1]).add(colors[4]).add(colors[7]);
+      rowColors.add(colors[i - 1]).add(colors[i]).add(colors[i + 1]);
       break;
       
     case 2:
