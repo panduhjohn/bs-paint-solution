@@ -59,22 +59,22 @@
   transition: 0.5s;
 }
 
-.blue {
+.color-1 {
   background-color: lightblue;
 }
 
-.red {
-  background-color: red;
+.color-2 {
+  background-color: orange;
 }
 
-.green {
+.color-3 {
   background-color: lightgreen;
 }
 
-.yellow {
+.color-4 {
   background-color: yellow;
 }
 
-.white {
+.color-5 {
   background-color: white;
 }

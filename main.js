@@ -1,5 +1,5 @@
 const brush = document.querySelector('.current-brush');
-brush.classList.add('blue');
+// brush.classList.add('blue');
 
 
 const getColor = (element) => element.classList.item(1);
