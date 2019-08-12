@@ -32,6 +32,10 @@
   border: 1px solid black;
 }
 
+.square {
+  transition: 0.5s;
+}
+
 .blue {
   background-color: lightblue;
 }
