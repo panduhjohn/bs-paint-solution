@@ -1,9 +1,40 @@
 const brush = document.querySelector('.current-brush');
 const paletteColors = Array.from(document.querySelectorAll('.palette-color'));
-const squares = Array.from(document.querySelectorAll('.square'));
+let squares = Array.from(document.querySelectorAll('.square'));
 
+const canvas = document.querySelector('.canvas');
+canvas.style.gridTemplateRows = `repeat(3, 50px)`;
+canvas.style.gridTemplateColumns = `repeat(3, 50px)`;
 
 const getColor = (element) => element.classList.item(1);
+
+const addSquareToCanvas = () => {
+  const square = document.createElement('div');
+  square.classList.add('square');
+  square.classList.add('color-5');
+  square.onclick = handleClickSquare;
+
+  canvas.appendChild(square);
+}
+
+const changeSize = () => {
+  squares.forEach((square) => square.remove());
+  const size = Number(document.querySelector('.size-input').value);
+  
+  canvas.style.gridTemplateRows = `repeat(${size}, ${150 / size}px)`;
+  canvas.style.gridTemplateColumns = `repeat(${size}, ${150 / size}px)`;
+
+  for (let width = 1; width <= size; width++) {
+    for (let height = 1; height <= size; height++) {
+      addSquareToCanvas();
+    }
+  }
+
+  squares = Array.from(document.querySelectorAll('.square'));
+
+}
+
+document.querySelector('.size-button').onclick = changeSize;
 
 
 const handleClickPaletteColor = (event) => brush.classList.replace(
@@ -55,10 +86,10 @@ const handleClickSquare = (event) => {
   const i = squares.indexOf(square);
   const column = i % 3;
 
-  if (isPartOfAUniqueLine(column, i)) {
-    document.querySelector('.message')
-      .innerText = 'Hey, you put three unique colors in a line. Cool!';
-  }
+  // if (isPartOfAUniqueLine(column, i)) {
+  //   document.querySelector('.message')
+  //     .innerText = 'Hey, you put three unique colors in a line. Cool!';
+  // }
 }
 
 squares.forEach((square) => square.onclick = handleClickSquare);
